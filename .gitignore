@@ -1,0 +1,10 @@
+# 배포에 필요 없는 것들 — GitHub에 올리지 않습니다
+_backup/
+_old_docs/
+_deploy/
+예시카드/
+화면미리보기/
+files.zip
+apps-script.gs
+*.md
+!README.md
