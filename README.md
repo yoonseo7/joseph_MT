@@ -39,14 +39,14 @@
 > 브라우저가 옛날 파일을 기억(캐시)하고 있는 겁니다.
 >
 > 1. 먼저 **Ctrl+Shift+R** (강력 새로고침)을 눌러보세요. 대부분 이걸로 해결됩니다.
-> 2. 그래도 안 되면 `index.html` 을 열어 아래 네 줄의 **`?v=11` 숫자를 8, 9…로 하나 올리고** 저장하세요.
+> 2. 그래도 안 되면 `index.html` 을 열어 아래 네 줄의 **`?v=12` 숫자를 8, 9…로 하나 올리고** 저장하세요.
 >    브라우저가 새 파일로 인식해서 무조건 다시 불러옵니다.
 >
 > ```html
-> <link rel="stylesheet" href="style.css?v=11">
-> <script src="content.js?v=11"></script>
-> <script src="illust.js?v=11"></script>
-> <script src="app.js?v=11"></script>
+> <link rel="stylesheet" href="style.css?v=12">
+> <script src="content.js?v=12"></script>
+> <script src="illust.js?v=12"></script>
+> <script src="app.js?v=12"></script>
 > ```
 
 **후보가 준비된 항목**

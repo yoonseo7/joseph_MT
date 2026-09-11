@@ -446,10 +446,16 @@ async function card() {
 
   let y = M + 92;
 
-  // ── 머리말 : 행사명 + 날짜 ──
+  // ── 머리말 : 행사명(왼쪽) + 날짜(오른쪽) ──
   line(SITE.cardTitle, y, 26, 900, '#1A1D1B');
   y += 40;
-  line(SITE.cardDate, y, 25, 400, '#7C8580');
+  // 날짜는 오른쪽 끝에 맞춥니다
+  x.save();
+  x.textAlign = 'right';
+  font(25, 400);
+  x.fillStyle = '#7C8580';
+  x.fillText(SITE.cardDate, RIGHT, y);
+  x.restore();
 
   // ── 일러스트 (원본 400x200 = 2:1 비율 유지) ──
   y += 22;
@@ -525,8 +531,17 @@ async function card() {
   roundRect(x, L, y, maxW, boxH, 14);
   x.fill();
 
-  line(RESULT.missionLabel, y + 38, 24, 700, deep);
-  line(t.mission, y + 78, 30, 700, '#1A1D1B');
+  // 미션 글자는 박스 안에서 가운데 정렬
+  const cx = L + maxW / 2;
+  x.save();
+  x.textAlign = 'center';
+  font(24, 700);
+  x.fillStyle = deep;
+  x.fillText(RESULT.missionLabel, cx, y + 38);
+  font(30, 700);
+  x.fillStyle = '#1A1D1B';
+  x.fillText(t.mission, cx, y + 78);
+  x.restore();
 
   return new Promise(resolve => c.toBlob(resolve, 'image/png'));
 }
