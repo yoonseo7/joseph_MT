@@ -310,7 +310,7 @@ function screenResult() {
         <div class="ticket-body">
           <span class="ticket-label">${SITE.brand} · MY DAY PASS</span>
           <div class="ticket-word">TEAM ${result}</div>
-          <p class="result-name">${esc(person)}님의 오늘</p>
+          <p class="result-name"><b>${esc(person)}</b>님의 오늘</p>
           <p class="result-type">${t.name}</p>
           <p class="result-quote">${t.quote}</p>
         </div>
@@ -352,8 +352,6 @@ function screenResult() {
         <button class="back" id="again">← ${RESULT.againButton}</button>
       </div>
     </section>
-
-    <p class="closing">${RESULT.closing}</p>
   `, result);
 
   document.querySelector('#save').onclick = save;
@@ -379,7 +377,7 @@ async function card() {
   const t = TEAMS[result];
   const accent = teamColor(result);
   const deep = DEEP[result];
-  const W = 1080, H = 1350;
+  const W = 1080, H = 1330;
   const M = 72;                       // 바깥 여백
   const PAD = 76;                     // 카드 안쪽 여백
   const L = M + PAD;                  // 글자 시작 x
@@ -482,16 +480,9 @@ async function card() {
   y += 88;
   line(t.name + RESULT.cardTypeSuffix, y, 76, 900, accent);
 
-  // ── 해설 3줄 ──
-  y += 74;
-  const lines = t.cardLines || [];
-  for (let i = 0; i < lines.length; i++) {
-    line(lines[i], y, 29, 400, '#1A1D1B');
-    y += 48;
-  }
 
   // 절취선
-  y = H - M - 214;
+  y = H - M - 430;
   x.save();
   x.setLineDash([12, 12]);
   x.strokeStyle = '#DADEDB';
@@ -511,17 +502,31 @@ async function card() {
   x.beginPath(); x.arc(M, y, 18, 0, Math.PI * 2); x.stroke();
   x.beginPath(); x.arc(W - M, y, 18, 0, Math.PI * 2); x.stroke();
 
-  // 코스
-  y += 52;
-  line('오늘의 추천 코스', y, 25, 400, '#7C8580');
-  y += 50;
-  line(t.cardCourse || t.course, y, 44, 900, '#1A1D1B');
+  // ── 절취선 아래: 추천 코스 + 해설 3줄 + 오늘의 미션 ──
 
-  // 맨 아래 공통 마무리 — 두 줄
-  y += 60;
-  line(RESULT.cardFooter, y, 28, 500, '#4A544D');
-  y += 40;
-  line(RESULT.cardFooter2, y, 28, 700, '#1A1D1B');
+  // 추천 코스
+  y += 50;
+  line('오늘의 추천 코스', y, 24, 400, '#7C8580');
+  y += 46;
+  line(t.cardCourse || t.course, y, 42, 900, '#1A1D1B');
+
+  // 해설 3줄
+  y += 58;
+  const cl = t.cardLines || [];
+  for (let i = 0; i < cl.length; i++) {
+    line(cl[i], y, 27, 400, '#1A1D1B');
+    y += 44;
+  }
+
+  // 오늘의 미션 — 팀색 옅은 배경 박스
+  y += 12;
+  const boxH = 104;
+  x.fillStyle = SOFT[result];
+  roundRect(x, L, y, maxW, boxH, 14);
+  x.fill();
+
+  line(RESULT.missionLabel, y + 38, 24, 700, deep);
+  line(t.mission, y + 78, 30, 700, '#1A1D1B');
 
   return new Promise(resolve => c.toBlob(resolve, 'image/png'));
 }

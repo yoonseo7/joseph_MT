@@ -446,9 +446,16 @@ input[type="text"]:focus {
 }
 
 .result-name {
-  font-size: 13px;
+  font-size: 15px;
   color: var(--mute);
-  margin: 0 0 4px;
+  margin: 0 0 6px;
+}
+.result-name b {
+  font-size: 30px;
+  font-weight: 900;
+  letter-spacing: -.03em;
+  color: var(--ink);
+  margin-right: 3px;
 }
 
 .result-type {
@@ -532,19 +539,6 @@ input[type="text"]:focus {
   margin: 11px 0 0;
 }
 
-.closing {
-  max-width: 560px;
-  margin: 44px auto 0;
-  padding: 24px;
-  background: var(--wash);
-  border-radius: var(--radius);
-  text-align: center;
-  font-size: 17px;
-  font-weight: 700;
-  line-height: 1.7;
-  letter-spacing: -.02em;
-  color: var(--ink);
-}
 
 /* ==========================================================================
    모바일
@@ -576,7 +570,6 @@ input[type="text"]:focus {
 
   .option { padding: 16px 15px; font-size: 15px; gap: 11px; }
   .info-row { grid-template-columns: 66px 1fr; font-size: 13px; }
-  .closing { margin-top: 34px; font-size: 14.5px; padding: 20px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
