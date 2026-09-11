@@ -79,7 +79,7 @@ const SITE = {
   startMeta: '{n}문항 · 1분컷 · 정답 없음',
 
   // 맨 아래 푸터
-  footer: '만청 요셉 공동체 · 팀은 달라도, 예수님 안에서 우리는 한 팀.',
+  footer: 'CONCRETE JOSEPH · 팀은 달라도, 예수님 안에서 우리는 한 팀.',
 
   // 시작 화면 티켓에 들어가는 글자
   passLabel: '',
